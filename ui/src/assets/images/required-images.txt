@@ -1,0 +1,18 @@
+1. hero-bg.jpg - Main homepage hero background
+2. about-bg.jpg - About page header background
+3. events-bg.jpg - Events page header background
+4. academy-bg.jpg - Academy page header background
+5. auditions-bg.jpg - Auditions page header background
+6. streaming-bg.jpg - Streaming page header background
+7. auth-bg.jpg - Login/Register page background
+8. account-bg.jpg - Account page header background
+9. logo.png - ChanceTv logo
+10. default-avatar.png - Default user avatar
+11. movie-thumbnails/ (directory)
+    - movie1.jpg
+    - movie2.jpg
+    - movie3.jpg
+12. contestant-photos/ (directory)
+    - contestant1.jpg
+    - contestant2.jpg
+    - contestant3.jpg 

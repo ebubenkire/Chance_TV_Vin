@@ -1,0 +1,168 @@
+.academy-hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+              url('/images/academy-bg.jpg') center/cover;
+  color: white;
+  padding: 6rem 0;
+  text-align: center;
+}
+
+.academy-hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.academy-hero p {
+  font-size: 1.5rem;
+  opacity: 0.9;
+}
+
+.academy-content {
+  padding: 4rem 0;
+}
+
+.academy-intro {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+}
+
+.academy-intro h2 {
+  color: var(--secondary-color);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.course-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.course-card:hover {
+  transform: translateY(-5px);
+}
+
+.course-image {
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.course-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.course-level {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--primary-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.course-details {
+  padding: 1.5rem;
+}
+
+.course-details h3 {
+  color: var(--secondary-color);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.course-description {
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.course-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.course-info span {
+  display: block;
+  font-size: 0.9rem;
+}
+
+.course-details h4 {
+  color: var(--secondary-color);
+  margin-bottom: 0.5rem;
+}
+
+.course-details ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.course-details li {
+  margin-bottom: 0.5rem;
+  color: #666;
+}
+
+.application-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-content h2 {
+  color: var(--secondary-color);
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .academy-hero h1 {
+    font-size: 2rem;
+  }
+  
+  .academy-hero p {
+    font-size: 1.2rem;
+  }
+  
+  .academy-intro h2 {
+    font-size: 2rem;
+  }
+  
+  .courses-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .modal-content {
+    padding: 1rem;
+  }
+} 

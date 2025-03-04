@@ -1,0 +1,135 @@
+:root {
+  /* Primary Colors */
+  --primary-color: #FF4B4B;  /* Vibrant Red */
+  --secondary-color: #2C3E50; /* Dark Blue */
+  
+  /* Accent Colors */
+  --accent-1: #3498DB;  /* Bright Blue */
+  --accent-2: #E67E22;  /* Orange */
+  --accent-3: #27AE60;  /* Green */
+  --accent-4: #9B59B6;  /* Purple */
+  
+  /* Background Colors */
+  --bg-light: #6f87a004;
+  --bg-dark: #1A1A1A;
+  
+  /* Text Colors */
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --text-light: #FFFFFF;
+
+  /* Gradient Colors */
+  --gradient-1: linear-gradient(45deg, #FF4B4B, #3498DB);
+  --gradient-2: linear-gradient(45deg, #E67E22, #9B59B6);
+  --gradient-3: linear-gradient(45deg, #27AE60, #3498DB);
+  
+  /* Animation Speeds */
+  --animation-speed-slow: 3s;
+  --animation-speed-medium: 2s;
+  --animation-speed-fast: 1s;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background-color: var(--bg-light);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Gradient Backgrounds */
+.gradient-1 {
+  background: linear-gradient(45deg, var(--primary-color), var(--accent-1));
+}
+
+.gradient-2 {
+  background: linear-gradient(45deg, var(--accent-2), var(--accent-4));
+}
+
+/* Animation Classes */
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Add animated gradient background */
+.animated-gradient {
+  background: linear-gradient(
+    270deg,
+    var(--primary-color),
+    var(--accent-1),
+    var(--accent-2),
+    var(--accent-4)
+  );
+  background-size: 300% 300%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Add glow effect */
+.glow {
+  animation: glow var(--animation-speed-slow) ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2),
+                 0 0 20px rgba(255, 255, 255, 0.2),
+                 0 0 30px var(--primary-color);
+  }
+  to {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.4),
+                 0 0 30px var(--accent-1),
+                 0 0 40px var(--accent-2);
+  }
+}
+
+/* Add floating animation */
+.float {
+  animation: float var(--animation-speed-medium) ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
