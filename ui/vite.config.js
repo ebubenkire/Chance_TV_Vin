@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
   base: '/Chance_TV_Vin/',
   build: {
-    outDir: 'dist'
+    outDir: 'dist',
+    emptyOutDir: true
   }
 })
