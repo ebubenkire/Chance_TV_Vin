@@ -215,4 +215,266 @@
   .form-buttons {
     flex-direction: column;
   }
+}
+
+/* Add these new styles */
+
+.back-button {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(-5px);
+}
+
+/* Button States */
+.btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.btn.submitting {
+  position: relative;
+  padding-left: 2.5rem;
+}
+
+.btn.submitting::before {
+  content: '';
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
+/* Form Input States */
+.form-group input:disabled,
+.form-group textarea:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Hover and Focus States */
+.btn-glow:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(255, 75, 75, 0.7);
+}
+
+.btn-glass:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Active States */
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+/* Form Validation Styles */
+.form-group input.error,
+.form-group textarea.error {
+  border-color: var(--primary-color);
+  background: rgba(255, 75, 75, 0.1);
+}
+
+.error-message {
+  color: var(--primary-color);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  display: block;
+}
+
+/* Toast Customization */
+:root {
+  --toaster-background: var(--bg-dark);
+  --toaster-text: var(--text-light);
+}
+
+/* Style toast notifications */
+.toast {
+  background: var(--bg-dark) !important;
+  color: var(--text-light) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.toast-success {
+  border-left: 4px solid var(--accent-3) !important;
+}
+
+.toast-error {
+  border-left: 4px solid var(--primary-color) !important;
+}
+
+.toast-loading {
+  border-left: 4px solid var(--accent-1) !important;
+}
+
+/* File Upload Styles */
+.file-upload-area {
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 1.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.file-upload-area:hover {
+  border-color: var(--primary-color);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.hidden-input {
+  display: none;
+}
+
+.upload-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.upload-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* File Preview Styles */
+.file-preview {
+  position: relative;
+  margin-top: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.file-preview img,
+.file-preview video {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.remove-file {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  color: white;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove-file:hover {
+  background: var(--primary-color);
+  transform: scale(1.1);
+}
+
+/* Media Grid */
+.media-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Upload Progress */
+.upload-progress {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  height: 6px;
+  margin: 1rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.upload-progress span {
+  position: absolute;
+  right: 0;
+  top: -1.5rem;
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+/* Drag and Drop Indicator */
+.file-upload-area.dragging {
+  border-color: var(--primary-color);
+  background: rgba(255, 75, 75, 0.1);
+}
+
+/* Loading States */
+.file-preview.loading {
+  opacity: 0.7;
+}
+
+.file-preview.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  border: 3px solid transparent;
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .media-preview-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  .file-preview img,
+  .file-preview video {
+    height: 150px;
+  }
 } 

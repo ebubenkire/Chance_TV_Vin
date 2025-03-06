@@ -1,69 +1,123 @@
+import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import './About.css'
 
 const About = () => {
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in')
+        }
+      })
+    }, { threshold: 0.1 })
+
+    document.querySelectorAll('.scroll-animate').forEach(el => {
+      observer.observe(el)
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <div className="about">
+    <div className="about-page">
+      {/* Hero Section */}
       <section className="about-hero">
         <div className="container">
-          <h1>About MoviePro</h1>
-          <p>Leading the future of entertainment</p>
+          <h1 className="about-title">
+            Empowering Artists to
+            <span className="gradient-text"> Shape Entertainment</span>
+          </h1>
+          <p className="about-subtitle">
+            ChanceTv is revolutionizing how talents connect with opportunities in the entertainment industry
+          </p>
         </div>
       </section>
 
-      <section className="about-content container">
-        <div className="about-section">
-          <h2>Our Story</h2>
-          <p>
-            Founded in 2020, MoviePro has quickly become one of the leading film production
-            companies in the industry. We specialize in creating compelling content that
-            pushes boundaries and tells stories that matter.
-          </p>
-        </div>
-
-        <div className="about-section">
-          <h2>Our Mission</h2>
-          <p>
-            To create innovative and inspiring content while nurturing new talent and
-            providing opportunities for creative minds to flourish in the entertainment
-            industry.
-          </p>
-        </div>
-
-        <div className="about-grid">
-          <div className="about-stat">
-            <h3>100+</h3>
-            <p>Productions</p>
-          </div>
-          <div className="about-stat">
-            <h3>500+</h3>
-            <p>Industry Professionals</p>
-          </div>
-          <div className="about-stat">
-            <h3>50+</h3>
-            <p>Awards</p>
-          </div>
-          <div className="about-stat">
-            <h3>1M+</h3>
-            <p>Streaming Subscribers</p>
+      {/* Mission Section */}
+      <section className="mission-section scroll-animate">
+        <div className="container">
+          <div className="mission-grid">
+            <div className="mission-content">
+              <h2>Our Mission</h2>
+              <p>We believe every artist deserves their moment in the spotlight. Our platform bridges the gap between talent and opportunity, making the entertainment industry more accessible than ever.</p>
+              <div className="mission-stats">
+                <div className="stat-box">
+                  <span className="stat-value">150k+</span>
+                  <span className="stat-label">Artists Connected</span>
+                </div>
+                <div className="stat-box">
+                  <span className="stat-value">5k+</span>
+                  <span className="stat-label">Productions</span>
+                </div>
+                <div className="stat-box">
+                  <span className="stat-value">98%</span>
+                  <span className="stat-label">Success Rate</span>
+                </div>
+              </div>
+            </div>
+            <div className="mission-image">
+              <img src="/src/assets/images/about/mission.jpg" alt="Our Mission" />
+            </div>
           </div>
         </div>
+      </section>
 
-        <div className="about-section">
-          <h2>Our Values</h2>
+      {/* Values Section */}
+      <section className="values-section scroll-animate">
+        <div className="container">
+          <h2 className="section-title">Our Core Values</h2>
           <div className="values-grid">
-            <div className="value-card">
-              <h3>Innovation</h3>
-              <p>Pushing the boundaries of storytelling through technology</p>
-            </div>
-            <div className="value-card">
-              <h3>Diversity</h3>
-              <p>Embracing different perspectives and voices</p>
-            </div>
-            <div className="value-card">
-              <h3>Excellence</h3>
-              <p>Maintaining the highest standards in everything we do</p>
-            </div>
+            {[
+              {
+                icon: 'star',
+                title: 'Excellence',
+                description: 'We strive for excellence in every opportunity we present'
+              },
+              {
+                icon: 'handshake',
+                title: 'Integrity',
+                description: 'Building trust through transparent and honest practices'
+              },
+              {
+                icon: 'users',
+                title: 'Community',
+                description: 'Fostering a supportive environment for artists to thrive'
+              },
+              {
+                icon: 'rocket',
+                title: 'Innovation',
+                description: 'Continuously evolving to serve our community better'
+              }
+            ].map((value, index) => (
+              <div key={index} className="value-card">
+                <div className="value-icon">
+                  <i className={`fas fa-${value.icon}`}></i>
+                </div>
+                <h3>{value.title}</h3>
+                <p>{value.description}</p>
+              </div>
+            ))}
           </div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section className="team-section scroll-animate">
+        <div className="container">
+          <h2 className="section-title">Meet Our Team</h2>
+          <div className="team-grid">
+            {/* Add team member cards here */}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="about-cta scroll-animate">
+        <div className="container">
+          <h2>Ready to Join Our Community?</h2>
+          <p>Start your journey with ChanceTv today</p>
+          <Link to="/register" className="btn btn-glow">Get Started</Link>
         </div>
       </section>
     </div>

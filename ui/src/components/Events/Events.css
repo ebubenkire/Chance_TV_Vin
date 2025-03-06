@@ -1,51 +1,80 @@
+/* Base Styles */
+.events-page {
+  background: var(--bg-dark);
+  color: var(--text-light);
+}
+
+/* Hero Section */
 .events-hero {
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-              url('/images/events-bg.jpg') center/cover;
-  color: white;
+  min-height: 60vh;
+  position: relative;
+  display: flex;
+  align-items: center;
   padding: 6rem 0;
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9)),
+    url('/src/assets/images/events/hero-bg.jpg') center/cover fixed;
   text-align: center;
+  overflow: hidden;
 }
 
-.events-hero h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+.events-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 30% 40%, rgba(255, 75, 75, 0.2) 0%, transparent 30%),
+    radial-gradient(circle at 70% 60%, rgba(52, 152, 219, 0.2) 0%, transparent 30%);
+  animation: pulseGlow 8s ease infinite alternate;
 }
 
-.events-hero p {
-  font-size: 1.5rem;
-  opacity: 0.9;
-}
-
-.events-content {
-  padding: 4rem 0;
-}
-
-.events-search {
+.events-title {
+  font-size: 4.5rem;
+  font-weight: 900;
+  line-height: 1.2;
   margin-bottom: 2rem;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.events-subtitle {
+  font-size: 1.8rem;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease forwards 0.2s;
+}
+
+/* Featured Events Section */
+.featured-events {
+  padding: 8rem 0;
+  background: var(--bg-dark);
 }
 
 .events-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  margin-top: 3rem;
 }
 
 .event-card {
-  background: white;
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .event-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 .event-image {
+  position: relative;
   height: 200px;
   overflow: hidden;
 }
@@ -54,41 +83,204 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.event-card:hover .event-image img {
+  transform: scale(1.1);
+}
+
+.event-category {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--primary-color);
+  color: white;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.event-content {
+  padding: 2rem;
+}
+
+.event-content h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
 }
 
 .event-details {
-  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
-.event-details h3 {
-  color: var(--secondary-color);
+.event-details span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.event-details i {
+  color: var(--accent-1);
+}
+
+/* Categories Section */
+.event-categories {
+  padding: 8rem 0;
+  background: linear-gradient(135deg,
+    rgba(44, 62, 80, 0.95),
+    rgba(52, 152, 219, 0.95)
+  );
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.category-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-10px);
+}
+
+.category-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 2rem;
+  background: linear-gradient(45deg, var(--primary-color), var(--accent-1));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: white;
+}
+
+.category-card h3 {
+  font-size: 1.8rem;
   margin-bottom: 1rem;
-  font-size: 1.5rem;
 }
 
-.event-description {
-  margin-bottom: 1rem;
-  color: #666;
+.category-card p {
+  font-size: 1.1rem;
+  opacity: 0.9;
 }
 
-.event-info {
+/* CTA Section */
+.events-cta {
+  padding: 8rem 0;
+  text-align: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+              url('/src/assets/images/events/cta-bg.jpg') center/cover fixed;
+}
+
+.events-cta h2 {
+  font-size: 3.5rem;
   margin-bottom: 1.5rem;
 }
 
-.event-info p {
-  margin-bottom: 0.5rem;
+.events-cta p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+/* Event Card Button Styles */
+.event-card .btn-outline {
+  width: 100%;
+  padding: 0.8rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-light);
+  font-weight: 500;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.event-card .btn-outline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.event-card .btn-outline:hover {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 75, 75, 0.3);
+}
+
+.event-card .btn-outline:hover::before {
+  left: 100%;
+}
+
+.event-card .btn-outline i {
+  font-size: 0.9rem;
+  transition: transform 0.3s ease;
+}
+
+.event-card .btn-outline:hover i {
+  transform: translateX(4px);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .events-title {
+    font-size: 3.5rem;
+  }
+  
+  .event-content h3 {
+    font-size: 1.5rem;
+  }
 }
 
 @media (max-width: 768px) {
-  .events-hero h1 {
-    font-size: 2rem;
+  .events-title {
+    font-size: 2.8rem;
   }
   
-  .events-hero p {
-    font-size: 1.2rem;
+  .events-subtitle {
+    font-size: 1.4rem;
   }
   
   .events-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .events-cta h2 {
+    font-size: 2.8rem;
   }
 } 

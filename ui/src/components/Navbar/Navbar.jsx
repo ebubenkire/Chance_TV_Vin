@@ -9,8 +9,13 @@ const Navbar = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
-    // Prevent body scroll when menu is open
+    // Toggle body scroll
     document.body.style.overflow = !isMenuOpen ? 'hidden' : 'auto'
+  }
+
+  const closeMenu = () => {
+    setIsMenuOpen(false)
+    document.body.style.overflow = 'auto'
   }
 
   useEffect(() => {
@@ -24,14 +29,13 @@ const Navbar = () => {
 
   // Close menu when route changes
   useEffect(() => {
-    setIsMenuOpen(false)
-    document.body.style.overflow = 'auto'
+    closeMenu()
   }, [location])
 
   return (
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container navbar-container">
-        <Link to="/" className="navbar-logo">
+        <Link to="/" className="navbar-logo" onClick={closeMenu}>
           <img src="/src/assets/images/logo.png" alt="ChanceTv" />
           {/* ChanceTv */}
         </Link>
@@ -45,13 +49,17 @@ const Navbar = () => {
           <span className="hamburger-line"></span>
         </button>
 
-        <div className={`nav-overlay ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}></div>
+        <div 
+          className={`nav-overlay ${isMenuOpen ? 'active' : ''}`} 
+          onClick={closeMenu}
+        ></div>
         
         <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
           <li>
             <Link 
               to="/about" 
               className={location.pathname === '/about' ? 'active' : ''}
+              onClick={closeMenu}
             >
               About
             </Link>
@@ -60,6 +68,7 @@ const Navbar = () => {
             <Link 
               to="/events"
               className={location.pathname === '/events' ? 'active' : ''}
+              onClick={closeMenu}
             >
               Events
             </Link>
@@ -68,6 +77,7 @@ const Navbar = () => {
             <Link 
               to="/careers"
               className={location.pathname === '/careers' ? 'active' : ''}
+              onClick={closeMenu}
             >
               Careers
             </Link>
@@ -76,6 +86,7 @@ const Navbar = () => {
             <Link 
               to="/academy"
               className={location.pathname === '/academy' ? 'active' : ''}
+              onClick={closeMenu}
             >
               Academy
             </Link>
@@ -84,6 +95,7 @@ const Navbar = () => {
             <Link 
               to="/auditions"
               className={location.pathname === '/auditions' ? 'active' : ''}
+              onClick={closeMenu}
             >
               Auditions
             </Link>
@@ -92,6 +104,7 @@ const Navbar = () => {
             <Link 
               to="/voting"
               className={location.pathname === '/voting' ? 'active' : ''}
+              onClick={closeMenu}
             >
               Voting
             </Link>
@@ -100,6 +113,7 @@ const Navbar = () => {
             <Link 
               to="/streaming"
               className={location.pathname === '/streaming' ? 'active' : ''}
+              onClick={closeMenu}
             >
               Streaming
             </Link>
@@ -108,6 +122,7 @@ const Navbar = () => {
             <Link 
               to="/account"
               className="btn btn-glass hover-scale"
+              onClick={closeMenu}
             >
               Account
             </Link>

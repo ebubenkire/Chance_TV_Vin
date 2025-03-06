@@ -1,225 +1,143 @@
-import { useState, useEffect } from 'react'
-import { Navigate } from 'react-router-dom'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import './Account.css'
 
-const MOCK_USER = {
-  name: "John Doe",
-  email: "john@example.com",
-  subscription: "Premium",
-  subscriptionEnd: "2024-12-31",
-  avatar: "/images/avatars/default.jpg",
-  activity: [
-    {
-      id: 1,
-      type: "vote",
-      description: "Voted for Sarah Johnson in The Last Symphony",
-      date: "2024-03-15"
-    },
-    {
-      id: 2,
-      type: "watch",
-      description: "Watched City Lights Episode 3",
-      date: "2024-03-14"
-    },
-    {
-      id: 3,
-      type: "application",
-      description: "Applied for Film Direction Course",
-      date: "2024-03-10"
-    }
-  ]
-}
-
 const Account = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [activeTab, setActiveTab] = useState('profile')
-  const [user, setUser] = useState(MOCK_USER)
-  const [editMode, setEditMode] = useState(false)
-  const [formData, setFormData] = useState({
-    name: user.name,
-    email: user.email,
-    currentPassword: '',
-    newPassword: '',
-    confirmPassword: ''
-  })
-
-  useEffect(() => {
-    // In a real application, check if user is logged in
-    const checkAuth = () => {
-      const token = localStorage.getItem('token')
-      setIsAuthenticated(!!token)
-    }
-    checkAuth()
-  }, [])
-
-  if (!isAuthenticated) {
-    return <Navigate to="/login" />
-  }
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }))
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    // In a real application, this would update the user's information
-    alert('Profile updated successfully!')
-    setEditMode(false)
+  
+  // Mock user data
+  const userData = {
+    name: "Victory Nkire",
+    role: "Actor/Performer",
+    avatar: "/src/assets/images/avatars/user-avatar.jpg",
+    email: "victory@example.com",
+    phone: "+1 (555) 123-4567",
+    location: "Los Angeles, CA",
+    bio: "Professional actor with 5+ years of experience in theater and television.",
+    stats: {
+      auditions: 12,
+      callbacks: 5,
+      roles: 3,
+      followers: 1240
+    },
+    recentActivity: [
+      {
+        type: "audition",
+        title: "Lead Role - Drama Series",
+        date: "2024-03-15",
+        status: "pending"
+      },
+      {
+        type: "callback",
+        title: "Supporting Role - Feature Film",
+        date: "2024-03-10",
+        status: "success"
+      }
+    ],
+    upcomingEvents: [
+      {
+        title: "Acting Workshop",
+        date: "2024-03-20",
+        time: "14:00",
+        location: "Studio A"
+      },
+      {
+        title: "Callback Audition",
+        date: "2024-03-22",
+        time: "10:00",
+        location: "Main Theater"
+      }
+    ]
   }
 
   return (
-    <div className="account">
-      <section className="account-hero">
+    <div className="account-page">
+      <div className="account-hero">
         <div className="container">
-          <h1>My Account</h1>
-          <p>Manage your ChanceTv experience</p>
-        </div>
-      </section>
-
-      <section className="account-content container">
-        <div className="account-grid">
-          <div className="account-sidebar">
-            <div className="user-info">
-              <img src={user.avatar} alt={user.name} className="user-avatar" />
-              <h3>{user.name}</h3>
-              <p className="subscription-badge">{user.subscription}</p>
+          <div className="profile-header">
+            <div className="profile-avatar">
+              <img src={userData.avatar} alt={userData.name} />
+              <button className="edit-avatar">
+                <i className="fas fa-camera"></i>
+              </button>
             </div>
-            <div className="account-tabs">
-              <button 
-                className={`tab-btn ${activeTab === 'profile' ? 'active' : ''}`}
-                onClick={() => setActiveTab('profile')}
-              >
-                Profile
-              </button>
-              <button 
-                className={`tab-btn ${activeTab === 'subscription' ? 'active' : ''}`}
-                onClick={() => setActiveTab('subscription')}
-              >
-                Subscription
-              </button>
-              <button 
-                className={`tab-btn ${activeTab === 'activity' ? 'active' : ''}`}
-                onClick={() => setActiveTab('activity')}
-              >
-                Activity
-              </button>
+            <div className="profile-info">
+              <h1>{userData.name}</h1>
+              <p className="role">{userData.role}</p>
+              <div className="profile-stats">
+                <div className="stat-item">
+                  <span className="stat-number">{userData.stats.auditions}</span>
+                  <span className="stat-label">Auditions</span>
+                </div>
+                <div className="stat-item">
+                  <span className="stat-number">{userData.stats.callbacks}</span>
+                  <span className="stat-label">Callbacks</span>
+                </div>
+                <div className="stat-item">
+                  <span className="stat-number">{userData.stats.roles}</span>
+                  <span className="stat-label">Roles</span>
+                </div>
+                <div className="stat-item">
+                  <span className="stat-number">{userData.stats.followers}</span>
+                  <span className="stat-label">Followers</span>
+                </div>
+              </div>
             </div>
           </div>
+        </div>
+      </div>
 
-          <div className="account-main">
+      <div className="account-content container">
+        <div className="account-tabs">
+          <button 
+            className={`tab-btn ${activeTab === 'profile' ? 'active' : ''}`}
+            onClick={() => setActiveTab('profile')}
+          >
+            Profile
+          </button>
+          <button 
+            className={`tab-btn ${activeTab === 'activity' ? 'active' : ''}`}
+            onClick={() => setActiveTab('activity')}
+          >
+            Activity
+          </button>
+          <button 
+            className={`tab-btn ${activeTab === 'media' ? 'active' : ''}`}
+            onClick={() => setActiveTab('media')}
+          >
+            Media
+          </button>
+          <button 
+            className={`tab-btn ${activeTab === 'settings' ? 'active' : ''}`}
+            onClick={() => setActiveTab('settings')}
+          >
+            Settings
+          </button>
+        </div>
+
+        <div className="account-grid">
+          <div className="main-content glass-morphism">
             {activeTab === 'profile' && (
               <div className="profile-section">
-                <div className="section-header">
-                  <h2>Profile Information</h2>
-                  <button 
-                    className="btn btn-secondary"
-                    onClick={() => setEditMode(!editMode)}
-                  >
-                    {editMode ? 'Cancel' : 'Edit Profile'}
-                  </button>
-                </div>
-
-                {editMode ? (
-                  <form onSubmit={handleSubmit} className="profile-form">
-                    <div className="form-group">
-                      <label htmlFor="name">Name</label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        className="form-control"
-                      />
+                <h2>About Me</h2>
+                <p className="bio">{userData.bio}</p>
+                
+                <div className="contact-info">
+                  <h3>Contact Information</h3>
+                  <div className="info-grid">
+                    <div className="info-item">
+                      <span className="label">Email</span>
+                      <span className="value">{userData.email}</span>
                     </div>
-
-                    <div className="form-group">
-                      <label htmlFor="email">Email</label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        className="form-control"
-                      />
+                    <div className="info-item">
+                      <span className="label">Phone</span>
+                      <span className="value">{userData.phone}</span>
                     </div>
-
-                    <div className="password-section">
-                      <h3>Change Password</h3>
-                      <div className="form-group">
-                        <label htmlFor="currentPassword">Current Password</label>
-                        <input
-                          type="password"
-                          id="currentPassword"
-                          name="currentPassword"
-                          value={formData.currentPassword}
-                          onChange={handleInputChange}
-                          className="form-control"
-                        />
-                      </div>
-
-                      <div className="form-group">
-                        <label htmlFor="newPassword">New Password</label>
-                        <input
-                          type="password"
-                          id="newPassword"
-                          name="newPassword"
-                          value={formData.newPassword}
-                          onChange={handleInputChange}
-                          className="form-control"
-                        />
-                      </div>
-
-                      <div className="form-group">
-                        <label htmlFor="confirmPassword">Confirm Password</label>
-                        <input
-                          type="password"
-                          id="confirmPassword"
-                          name="confirmPassword"
-                          value={formData.confirmPassword}
-                          onChange={handleInputChange}
-                          className="form-control"
-                        />
-                      </div>
-                    </div>
-
-                    <button type="submit" className="btn btn-primary">
-                      Save Changes
-                    </button>
-                  </form>
-                ) : (
-                  <div className="profile-info">
-                    <div className="info-group">
-                      <label>Name</label>
-                      <p>{user.name}</p>
-                    </div>
-                    <div className="info-group">
-                      <label>Email</label>
-                      <p>{user.email}</p>
+                    <div className="info-item">
+                      <span className="label">Location</span>
+                      <span className="value">{userData.location}</span>
                     </div>
                   </div>
-                )}
-              </div>
-            )}
-
-            {activeTab === 'subscription' && (
-              <div className="subscription-section">
-                <h2>Subscription Details</h2>
-                <div className="subscription-info">
-                  <div className="info-group">
-                    <label>Current Plan</label>
-                    <p>{user.subscription}</p>
-                  </div>
-                  <div className="info-group">
-                    <label>Renewal Date</label>
-                    <p>{user.subscriptionEnd}</p>
-                  </div>
-                  <button className="btn btn-primary">Upgrade Plan</button>
                 </div>
               </div>
             )}
@@ -227,26 +145,206 @@ const Account = () => {
             {activeTab === 'activity' && (
               <div className="activity-section">
                 <h2>Recent Activity</h2>
-                <div className="activity-list">
-                  {user.activity.map(item => (
-                    <div key={item.id} className="activity-item">
+                <div className="activity-timeline">
+                  {userData.recentActivity.map((activity, index) => (
+                    <div key={index} className={`activity-card ${activity.status}`}>
                       <div className="activity-icon">
-                        {item.type === 'vote' && '🗳️'}
-                        {item.type === 'watch' && '🎬'}
-                        {item.type === 'application' && '📝'}
+                        <i className={`fas fa-${activity.type === 'audition' ? 'theater-masks' : 'check-circle'}`}></i>
                       </div>
                       <div className="activity-details">
-                        <p>{item.description}</p>
-                        <span className="activity-date">{item.date}</span>
+                        <h3>{activity.title}</h3>
+                        <p className="date">{new Date(activity.date).toLocaleDateString()}</p>
+                        <span className="status-badge">{activity.status}</span>
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
             )}
+
+            {activeTab === 'media' && (
+              <div className="media-section">
+                <h2>My Media Gallery</h2>
+                
+                <div className="media-filters">
+                  <button className="filter-btn active">All</button>
+                  <button className="filter-btn">Photos</button>
+                  <button className="filter-btn">Videos</button>
+                  <button className="filter-btn">Reels</button>
+                </div>
+
+                <div className="media-upload-area">
+                  <input 
+                    type="file" 
+                    id="media-upload" 
+                    className="hidden-input" 
+                    multiple 
+                    accept="image/*,video/*" 
+                  />
+                  <label htmlFor="media-upload" className="upload-label">
+                    <i className="fas fa-cloud-upload-alt"></i>
+                    <span>Drop files here or click to upload</span>
+                    <small>Supports: JPG, PNG, MP4 (Max 10MB)</small>
+                  </label>
+                </div>
+
+                <div className="media-grid">
+                  {/* Sample Media Items */}
+                  <div className="media-item">
+                    <img src="/src/assets/images/portfolio/headshot1.jpg" alt="Headshot" />
+                    <div className="media-overlay">
+                      <div className="media-actions">
+                        <button className="action-btn">
+                          <i className="fas fa-expand"></i>
+                        </button>
+                        <button className="action-btn">
+                          <i className="fas fa-trash"></i>
+                        </button>
+                      </div>
+                      <div className="media-info">
+                        <span className="media-type">Photo</span>
+                        <span className="media-date">Mar 15, 2024</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="media-item video">
+                    <video src="/src/assets/videos/reel1.mp4" poster="/src/assets/images/portfolio/video-thumb1.jpg" />
+                    <div className="media-overlay">
+                      <div className="media-actions">
+                        <button className="action-btn">
+                          <i className="fas fa-play"></i>
+                        </button>
+                        <button className="action-btn">
+                          <i className="fas fa-trash"></i>
+                        </button>
+                      </div>
+                      <div className="media-info">
+                        <span className="media-type">Video</span>
+                        <span className="media-date">Mar 10, 2024</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Add more media items here */}
+                </div>
+              </div>
+            )}
+
+            {activeTab === 'settings' && (
+              <div className="settings-section">
+                <h2>Account Settings</h2>
+                
+                <div className="settings-grid">
+                  <div className="settings-group">
+                    <h3>Profile Settings</h3>
+                    <form className="settings-form">
+                      <div className="form-group">
+                        <label>Display Name</label>
+                        <input type="text" defaultValue={userData.name} />
+                      </div>
+                      <div className="form-group">
+                        <label>Professional Title</label>
+                        <input type="text" defaultValue={userData.role} />
+                      </div>
+                      <div className="form-group">
+                        <label>Bio</label>
+                        <textarea defaultValue={userData.bio} rows="4" />
+                      </div>
+                      <button type="submit" className="btn btn-glow">Save Changes</button>
+                    </form>
+                  </div>
+
+                  <div className="settings-group">
+                    <h3>Contact Information</h3>
+                    <form className="settings-form">
+                      <div className="form-group">
+                        <label>Email</label>
+                        <input type="email" defaultValue={userData.email} />
+                      </div>
+                      <div className="form-group">
+                        <label>Phone</label>
+                        <input type="tel" defaultValue={userData.phone} />
+                      </div>
+                      <div className="form-group">
+                        <label>Location</label>
+                        <input type="text" defaultValue={userData.location} />
+                      </div>
+                      <button type="submit" className="btn btn-glow">Update Contact Info</button>
+                    </form>
+                  </div>
+
+                  <div className="settings-group">
+                    <h3>Privacy Settings</h3>
+                    <div className="settings-options">
+                      <label className="toggle-label">
+                        <span>Profile Visibility</span>
+                        <div className="toggle-switch">
+                          <input type="checkbox" defaultChecked />
+                          <span className="toggle-slider"></span>
+                        </div>
+                      </label>
+                      <label className="toggle-label">
+                        <span>Show Email Address</span>
+                        <div className="toggle-switch">
+                          <input type="checkbox" />
+                          <span className="toggle-slider"></span>
+                        </div>
+                      </label>
+                      <label className="toggle-label">
+                        <span>Show Phone Number</span>
+                        <div className="toggle-switch">
+                          <input type="checkbox" />
+                          <span className="toggle-slider"></span>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div className="settings-group danger-zone">
+                    <h3>Account Management</h3>
+                    <div className="danger-zone-options">
+                      <button className="btn btn-outline-danger">Deactivate Account</button>
+                      <button className="btn btn-danger">Delete Account</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className="side-content">
+            <div className="upcoming-events glass-morphism">
+              <h2>Upcoming Events</h2>
+              {userData.upcomingEvents.map((event, index) => (
+                <div key={index} className="event-card">
+                  <div className="event-date">
+                    <span className="day">{new Date(event.date).getDate()}</span>
+                    <span className="month">{new Date(event.date).toLocaleString('default', { month: 'short' })}</span>
+                  </div>
+                  <div className="event-details">
+                    <h3>{event.title}</h3>
+                    <p className="time">{event.time}</p>
+                    <p className="location">{event.location}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="quick-actions glass-morphism">
+              <h2>Quick Actions</h2>
+              <div className="action-buttons">
+                <Link to="/auditions" className="btn btn-glow">
+                  Find Auditions
+                </Link>
+                <Link to="/academy" className="btn btn-glass">
+                  Browse Courses
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
     </div>
   )
 }
