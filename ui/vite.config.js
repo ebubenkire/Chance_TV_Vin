@@ -5,6 +5,7 @@ import path from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  base: '/your-repo-name/',
   build: {
     outDir: 'dist',
     sourcemap: false,
